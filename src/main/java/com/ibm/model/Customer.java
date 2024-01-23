@@ -13,13 +13,18 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+//@Data
+@Getter
+@Setter
+
 @Entity
 @Table(name = "Customer")
 
@@ -51,4 +56,12 @@ public class Customer {
 		orders.add(temporder);
 		temporder.setCustomer(this);
 	}
+
+
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", orders=" + orders + "]";
+	}
+	
+	
 }

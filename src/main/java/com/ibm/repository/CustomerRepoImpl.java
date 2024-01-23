@@ -83,7 +83,7 @@ public class CustomerRepoImpl implements CustomerRepo{
 			
 			case 1: 
 				session.beginTransaction();
-				System.out.println("1.Enter name");
+				System.out.println("Enter name");
 				String name= br.readLine();
 				Customer cus=session.get(Customer.class, customerId);
 				if(cus==null)
@@ -117,6 +117,14 @@ public class CustomerRepoImpl implements CustomerRepo{
 	@Override
 	public void deleteCustomer(String customerId) {
 		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.openSession();
+		session.getTransaction().begin();		
+		Customer cus= session.get(Customer.class, customerId);
+		
+		session.delete(cus);
+		session.getTransaction().commit();
+		
 		
 	}
 

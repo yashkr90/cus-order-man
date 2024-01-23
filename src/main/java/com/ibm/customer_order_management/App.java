@@ -3,12 +3,10 @@ package com.ibm.customer_order_management;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+
 
 import com.ibm.factory.MyFactory;
 import com.ibm.model.Customer;
@@ -51,44 +49,77 @@ public class App
     	Session session= sessionFactory.openSession();
     	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //    	
+    	
+// ---------------creating customer and order----------------------------------
+    	session.beginTransaction();
+    	
+    	
+    	Customer customer= new Customer();
+    	Order order1= new Order();
+    	Order order2= new Order();
+    	
+    	Order temporder1=orderService.createOrder(order1);
+    	System.out.println(temporder1);
+    	
+    	Order temporder2=orderService.createOrder(order2);
+    	System.out.println(temporder2);
+    	
+    	Customer tempcustomer=customerService.createCustomer(customer);
+    	
+    	
+    	
+    	tempcustomer.add(temporder1);
+    	
+    	
+    	
+    	tempcustomer.add(temporder2);
+    	session.save(tempcustomer);
+    	session.getTransaction().commit();
+    	
+    	
+//    	//----updating oreder and customer--------------------------------
 //    	session.beginTransaction();
+//    	System.out.println("Enter customer id to update");
+//    	String cusid1= br.readLine();
+//    	Customer cus= customerService.updateCustomer(cusid1);
+//    	if(cus==null)
+//    	{
+//    		System.out.println("not found");
+//    	}
+//    	
+//    	System.out.println("Enter customer id to be deleted");
+//    	String cusid2 = br.readLine();
+//    	customerService.deleteCustomer(cusid2);
 //    	
 //    	
-//    	Customer customer= new Customer();
-//    	Order order1= new Order();
-//    	Order order2= new Order();
 //    	
-//    	Order temporder1=orderService.createOrder(order1);
-//    	System.out.println(temporder1);
-//    	
-//    	Order temporder2=orderService.createOrder(order2);
-//    	System.out.println(temporder2);
-//    	
-//    	Customer tempcustomer=customerService.createCustomer(customer);
-//    	
-//    	//tempcustomer.setOrder(temporder);
-//    	
-//    	tempcustomer.add(temporder1);
-//    	//session.save(tempcustomer);
-//    	//session.getTransaction().commit();
-//    	
-//    	//session.getTransaction().begin();;
-//    	
-//    	
-//    	tempcustomer.add(temporder2);
-//    	session.save(tempcustomer);
 //    	session.getTransaction().commit();
     	
-    	session.beginTransaction();
-    	System.out.println("Enter customer id to update");
-    	String cusid= br.readLine();
-    	Customer cus= customerService.updateCustomer(cusid);
-    	if(cus==null)
+    	//session.beginTransaction();
+    	
+    	System.out.println("enter order id to be updated");
+    	String orderid1= br.readLine();
+    	
+    	Order or1= orderService.updateOrder(orderid1);
+    	
+    	if(or1==null)
     	{
-    		System.out.println("not found");
+    		System.out.println("Order not found");
+    	}
+    	else {
+    		System.out.println(or1);
     	}
     	
-    	session.getTransaction().commit();
+    	//session.getTransaction().commit();
+    	
+   
+    	
+    	System.out.println("Enter order id to be deletd");
+    	
+    	String orderid2 = br.readLine(); 
+    	orderService.deleteOrder(orderid2);
+    	
+    	
     	
     	
     	

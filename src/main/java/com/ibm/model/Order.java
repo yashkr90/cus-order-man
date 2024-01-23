@@ -14,12 +14,17 @@ import org.hibernate.type.descriptor.sql.TinyIntTypeDescriptor;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+//@Data
+@Getter
+@Setter
+
 @Entity
 @Table(name = "Orders")
 public class Order {
@@ -41,5 +46,12 @@ public class Order {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CustomerId")
 	private Customer customer;
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", orderType=" + orderType + ", orderPrice=" + orderPrice
+				+ ", isConfirmed=" + isConfirmed  + "]";
+	}
+	
 	
 }
