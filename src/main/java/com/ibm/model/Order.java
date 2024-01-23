@@ -43,7 +43,7 @@ public class Order {
 	@Column(name = "IsConfirmed")
 	private Boolean isConfirmed;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinColumn(name = "CustomerId")
 	private Customer customer;
 

@@ -1,6 +1,7 @@
 package com.ibm.customer_order_management;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -15,6 +16,8 @@ import com.ibm.service.CustomerService;
 import com.ibm.service.CustomerServiceImpl;
 import com.ibm.service.OrderService;
 import com.ibm.service.OrderServiceImpl;
+
+import java.util.*;
 
 /**
  * Hello world!
@@ -78,7 +81,7 @@ public class App
     	
     	
 //    	//----updating oreder and customer--------------------------------
-//    	session.beginTransaction();
+
 //    	System.out.println("Enter customer id to update");
 //    	String cusid1= br.readLine();
 //    	Customer cus= customerService.updateCustomer(cusid1);
@@ -93,24 +96,22 @@ public class App
 //    	
 //    	
 //    	
-//    	session.getTransaction().commit();
+
     	
-    	//session.beginTransaction();
+//    	System.out.println("enter order id to be updated");
+//    	String orderid1= br.readLine();
+//    	
+//    	Order or1= orderService.updateOrder(orderid1);
+//    	
+//    	if(or1==null)
+//    	{
+//    		System.out.println("Order not found");
+//    	}
+//    	else {
+//    		System.out.println(or1);
+//    	}
     	
-    	System.out.println("enter order id to be updated");
-    	String orderid1= br.readLine();
-    	
-    	Order or1= orderService.updateOrder(orderid1);
-    	
-    	if(or1==null)
-    	{
-    		System.out.println("Order not found");
-    	}
-    	else {
-    		System.out.println(or1);
-    	}
-    	
-    	//session.getTransaction().commit();
+
     	
    
     	
@@ -124,19 +125,19 @@ public class App
     	
     	
     	
-//    	List<Customer> customers=customerService.getAllCustomer();
-//    	
-//    	for(Customer c:customers)
-//    	{
-//    		System.out.println(c);
-//    	}
-//    	
-//    	List<Order> orders= orderService.getAllOrders();
-//    	
-//    	for(Order o:orders)
-//    	{
-//    		System.out.println(o);
-//    	}
+    	List<Customer> customers=customerService.getAllCustomer();
+    	
+    	for(Customer c:customers)
+    	{
+    		System.out.println(c);
+    	}
+    	
+    	List<Order> orders= orderService.getAllOrders();
+    	
+    	for(Order o:orders)
+    	{
+    		System.out.println(o);
+    	}
 			 
     }
 }
